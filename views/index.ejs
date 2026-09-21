@@ -1,26 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include('partials/head', { title: 'Iconic Video Game Characters' }) %>
+<%- include('partials/head', { title: 'GameHall' }) %>
 <body>
-  <main class="container">
-    <hgroup>
-      <h1>🎮 Iconic Video Game Characters</h1>
-      <p>A roundup of legendary heroes (and antiheroes) from gaming history.</p>
-    </hgroup>
+  <section class="hero">
+    <div class="hero-eyebrow">PLAYER SELECT</div>
+    <h1>GAMEHALL</h1>
+    <p>Seven legends pulled from seven different worlds. Pick a fighter to see their full stat card.</p>
+    <a href="#roster" class="hero-cta">Select Your Fighter</a>
+  </section>
+
+  <main class="roster" id="roster">
+    <h2 class="roster-heading">The Roster</h2>
+    <p class="roster-sub">Every character below has a dedicated stat card &mdash; click one to open it.</p>
 
     <div class="grid-cards">
       <% characters.forEach(function(character) { %>
-        <article class="card">
-          <img
-            src="https://api.dicebear.com/7.x/bottts/svg?seed=<%= character.avatarSeed %>"
-            alt="<%= character.name %> avatar"
-            class="card-img"
-          />
-          <h3><%= character.name %></h3>
-          <p><strong>Game:</strong> <%= character.game %></p>
-          <p><strong>Role:</strong> <%= character.role %></p>
-          <a href="/characters/<%= character.slug %>" role="button">View Details</a>
-        </article>
+        <a class="card" href="/characters/<%= character.slug %>">
+          <div class="card-img-wrap">
+            <img
+              class="card-img"
+              src="https://api.dicebear.com/7.x/adventurer/svg?seed=<%= character.avatarSeed %>&backgroundColor=1a1e26"
+              alt="<%= character.name %> portrait"
+            />
+            <div class="card-nameplate">
+              <h3><%= character.name %></h3>
+            </div>
+          </div>
+          <div class="card-meta">
+            <div><span class="game"><%= character.game %></span> &middot; <%= character.role %></div>
+            <div class="power-bar">
+              <div class="power-bar-track">
+                <div class="power-bar-fill" style="width: <%= character.power %>%;"></div>
+              </div>
+              <span class="power-bar-value"><%= character.power %></span>
+            </div>
+          </div>
+        </a>
       <% }); %>
     </div>
   </main>

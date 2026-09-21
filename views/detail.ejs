@@ -1,24 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include('partials/head', { title: character.name + ' - Character Details' }) %>
+<%- include('partials/head', { title: character.name + ' - GameHall' }) %>
 <body>
-  <main class="container">
-    <a href="/">&larr; Back to all characters</a>
+  <div class="detail-wrap">
+    <a href="/" class="back-link">&larr; Back to roster</a>
 
-    <article class="detail-card">
-      <img
-        src="https://api.dicebear.com/7.x/bottts/svg?seed=<%= character.avatarSeed %>"
-        alt="<%= character.name %> avatar"
-        class="detail-img"
-      />
-      <div>
+    <article class="fighter-card">
+      <div class="fighter-portrait">
+        <img
+          src="https://api.dicebear.com/7.x/adventurer/svg?seed=<%= character.avatarSeed %>&backgroundColor=1a1e26"
+          alt="<%= character.name %> portrait"
+        />
+      </div>
+      <div class="fighter-info">
+        <div class="fighter-badge"><%= character.game %></div>
         <h1><%= character.name %></h1>
-        <p><strong>Game:</strong> <%= character.game %></p>
-        <p><strong>Role:</strong> <%= character.role %></p>
-        <p><strong>Power Rating:</strong> <%= character.power %>/100</p>
-        <p><%= character.description %></p>
+        <p class="fighter-role"><%= character.role %></p>
+
+        <div class="fighter-power-row">
+          <span class="fighter-power-label">POWER</span>
+          <div class="power-bar-track">
+            <div class="power-bar-fill" style="width: <%= character.power %>%;"></div>
+          </div>
+          <span class="power-bar-value"><%= character.power %></span>
+        </div>
+
+        <p class="fighter-desc"><%= character.description %></p>
       </div>
     </article>
-  </main>
+  </div>
 </body>
 </html>
