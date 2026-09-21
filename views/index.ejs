@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/head', { title: 'Iconic Video Game Characters' }) %>
+<body>
+  <main class="container">
+    <hgroup>
+      <h1>🎮 Iconic Video Game Characters</h1>
+      <p>A roundup of legendary heroes (and antiheroes) from gaming history.</p>
+    </hgroup>
+
+    <div class="grid-cards">
+      <% characters.forEach(function(character) { %>
+        <article class="card">
+          <img
+            src="https://api.dicebear.com/7.x/bottts/svg?seed=<%= character.avatarSeed %>"
+            alt="<%= character.name %> avatar"
+            class="card-img"
+          />
+          <h3><%= character.name %></h3>
+          <p><strong>Game:</strong> <%= character.game %></p>
+          <p><strong>Role:</strong> <%= character.role %></p>
+          <a href="/characters/<%= character.slug %>" role="button">View Details</a>
+        </article>
+      <% }); %>
+    </div>
+  </main>
+</body>
+</html>
